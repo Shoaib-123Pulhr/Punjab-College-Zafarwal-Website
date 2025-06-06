@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Punjab College Zafarwal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1e90ff; /* Blue background */
+            color: white;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        
+        header {
+            background-color: #003366;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            width: 100%;
+        }
+        
+        .logo {
+            max-width: 150px;
+            height: auto;
+        }
+        
+        nav {
+            background-color: #004080;
+            padding: 10px 0;
+            text-align: center;
+            width: 100%;
+        }
+        
+        .nav-button {
+            background-color: #ff0000; /* Red buttons */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 5px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        
+        .nav-button:hover {
+            background-color: #1e90ff; /* Blue on hover */
+        }
+        
+        section {
+            padding: 20px;
+            margin: 20px;
+            background-color: #003366;
+            border-radius: 10px;
+            flex: 1;
+            min-width: 60%;
+        }
+        
+        .document-sidebar {
+            width: 30%;
+            padding: 20px;
+            background-color: #004080;
+            border-radius: 10px;
+            margin: 20px 20px 20px 0;
+            min-height: 500px;
+        }
+        
+        h1, h2 {
+            color: #ffcc00;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        input[type="text"],
+        input[type="date"],
+        input[type="email"],
+        input[type="tel"],
+        textarea, select {
+            width: 100%;
+            padding: 8px;
+            border-radius: 5px;
+            border: none;
+        }
+        
+        .submit-btn {
+            background-color: #ff0000;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        
+        .submit-btn:hover {
+            background-color: #1e90ff;
+        }
+        
+        .course-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        
+        .course-card {
+            width: 30%;
+            background-color: #004080;
+            margin: 10px;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .course-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #1e90ff;
+        }
+        
+        th {
+            background-color: #004080;
+        }
+        
+        .upload-area {
+            border: 2px dashed #1e90ff;
+            padding: 20px;
+            text-align: center;
+            margin: 10px 0;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        .upload-area.highlight {
+            background-color: #0066cc;
+        }
+        
+        footer {
+            background-color: #003366;
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+            width: 100%;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        /* New styles for Why Choose Us section */
+        .why-choose-us {
+            margin-top: 30px;
+        }
+        
+        .features-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        
+        .feature-card {
+            width: 48%;
+            background-color: #004080;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .feature-icon {
+            font-size: 40px;
+            margin-right: 15px;
+            color: #ffcc00;
+        }
+        
+        .feature-content h3 {
+            margin-top: 0;
+            color: #ffcc00;
+        }
+        
+        /* Document preview styles */
+        .document-list {
+            margin-top: 20px;
+        }
+        
+        .document-item {
+            background-color: #003366;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .document-name {
+            flex: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        
+        .document-remove {
+            color: #ff0000;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        
+        /* Success message styles */
+        .success-message {
+            text-align: center;
+            padding: 20px;
+            background-color: #004080;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        
+        .success-icon {
+            color: #00ff00;
+            font-size: 50px;
+            margin-bottom: 15px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <img src="https://via.placeholder.com/150x80?text=Punjab+College+Logo" alt="Punjab College Zafarwal Logo" class="logo">
+        <h1>Punjab College Zafarwal</h1>
+    </header>
+    
+    <nav>
+        <button class="nav-button" onclick="showSection('home')">HOME</button>
+        <button class="nav-button" onclick="showSection('about')">ABOUT US</button>
+        <button class="nav-button" onclick="showSection('admission')">ADMISSION</button>
+        <button class="nav-button" onclick="showSection('courses')">COURSES</button>
+        <button class="nav-button" onclick="showSection('records')">RECORDS</button>
+        <button class="nav-button" onclick="showSection('contact')">CONTACT US</button>
+        <button class="nav-button" onclick="showSection('message')">MESSAGE</button>
+    </nav>
+    
+    <section id="home">
+        <h2>Welcome to Punjab College Zafarwal</h2>
+        <p>Providing quality education since 1990. We are committed to excellence in academics and character building.</p>
+        <p>Our mission is to empower students with knowledge and skills to succeed in their professional lives.</p>
+        
+        <div class="why-choose-us">
+            <h2>WHY CHOOSE PGC ZAFARWAL</h2>
+            <div class="features-container">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Academic Excellence</h3>
+                        <p>Consistently producing top position holders in board examinations with a proven track record of academic success.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Experienced Faculty</h3>
+                        <p>Our highly qualified and dedicated teachers provide personalized attention to ensure student success.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Modern Facilities</h3>
+                        <p>State-of-the-art laboratories, well-equipped classrooms, and a comprehensive library for optimal learning.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Technology Integration</h3>
+                        <p>Advanced computer labs and digital learning resources to prepare students for the modern world.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Career Guidance</h3>
+                        <p>Comprehensive career counseling and university placement support for our graduates.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Vibrant Community</h3>
+                        <p>A diverse and inclusive environment that fosters personal growth and leadership skills.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="about" class="hidden">
+        <h2>About Us</h2>
+        <p>Punjab College Zafarwal is a premier educational institution in the region, offering intermediate and degree programs in science, commerce, and arts.</p>
+        <p>Established in 1990, we have a rich history of academic excellence and have produced thousands of successful professionals.</p>
+        <h3>Our Facilities:</h3>
+        <ul>
+            <li>Well-equipped laboratories</li>
+            <li>Spacious classrooms</li>
+            <li>Library with thousands of books</li>
+            <li>Sports facilities</li>
+            <li>Computer labs with latest technology</li>
+        </ul>
+    </section>
+    
+    <section id="admission" class="hidden">
+        <h2>Admission Process</h2>
+        <p><strong>IMPORTANT NOTE: LAST DATE TO APPLY FOR 1ST YEAR STUDENTS: JUNE 01, 2025</strong></p>
+        
+        <div id="admission-form-container">
+            <!-- Content will be loaded by JavaScript based on date -->
+        </div>
+        
+        <div id="success-message" class="success-message hidden">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h3>Admission Completed Successfully!</h3>
+            <p>Your admission has been submitted successfully. We will contact you soon with further details.</p>
+            <p>You can download your admission form from the documents section on the right.</p>
+        </div>
+    </section>
+    
+    <section id="courses" class="hidden">
+        <h2>Our Courses</h2>
+        <div class="course-container">
+            <div class="course-card">
+                <h3>Graphic Designing</h3>
+                <img src="https://via.placeholder.com/300x200?text=Graphic+Designing" alt="Graphic Designing Course">
+                <p>Learn professional graphic design skills with industry-standard tools.</p>
+            </div>
+            <div class="course-card">
+                <h3>Digital Marketing</h3>
+                <img src="https://via.placeholder.com/300x200?text=Digital+Marketing" alt="Digital Marketing Course">
+                <p>Master SEO, social media marketing, and online advertising strategies.</p>
+            </div>
+            <div class="course-card">
+                <h3>Web Development</h3>
+                <img src="https://via.placeholder.com/300x200?text=Web+Development" alt="Web Development Course">
+                <p>Become a full-stack developer with HTML, CSS, JavaScript and more.</p>
+            </div>
+            <div class="course-card">
+                <h3>Shopify</h3>
+                <img src="https://via.placeholder.com/300x200?text=Shopify" alt="Shopify Course">
+                <p>Learn to create and manage successful e-commerce stores with Shopify.</p>
+            </div>
+            <div class="course-card">
+                <h3>Amazon FBA</h3>
+                <img src="https://via.placeholder.com/300x200?text=Amazon+FBA" alt="Amazon FBA Course">
+                <p>Master the art of selling on Amazon through Fulfillment by Amazon.</p>
+            </div>
+            <div class="course-card">
+                <h3>Video Editing</h3>
+                <img src="https://via.placeholder.com/300x200?text=Video+Editing" alt="Video Editing Course">
+                <p>Learn professional video editing techniques with industry tools.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section id="records" class="hidden">
+        <h2>Student Records</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Roll No</th>
+                    <th>Student Name</th>
+                    <th>Father Name</th>
+                    <th>Program</th>
+                    <th>Year</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>2025001</td>
+                    <td>Ali Ahmed</td>
+                    <td>Mohammad Ahmed</td>
+                    <td>FSc Pre-Medical</td>
+                    <td>2025</td>
+                </tr>
+                <tr>
+                    <td>2025002</td>
+                    <td>Sana Khan</td>
+                    <td>Imran Khan</td>
+                    <td>FSc Pre-Engineering</td>
+                    <td>2025</td>
+                </tr>
+                <tr>
+                    <td>2025003</td>
+                    <td>Bilal Arshad</td>
+                    <td>Arshad Mehmood</td>
+                    <td>ICS</td>
+                    <td>2025</td>
+                </tr>
+                <tr>
+                    <td>2025004</td>
+                    <td>Fatima Noor</td>
+                    <td>Noor Mohammad</td>
+                    <td>FA Arts</td>
+                    <td>2025</td>
+                </tr>
+                <tr>
+                    <td>2025005</td>
+                    <td>Usman Ali</td>
+                    <td>Ali Raza</td>
+                    <td>FSc Pre-Medical</td>
+                    <td>2025</td>
+                </tr>
+                <tr>
+                    <td>2025006</td>
+                    <td>Ayesha Malik</td>
+                    <td>Malik Shahid</td>
+                    <td>FSc Pre-Engineering</td>
+                    <td>2025</td>
+                </tr>
+                <tr>
+                    <td>2025007</td>
+                    <td>Zainab Kareem</td>
+                    <td>Kareem Ullah</td>
+                    <td>FA Arts</td>
+                    <td>2025</td>
+                </tr>
+                <tr>
+                    <td>2025008</td>
+                    <td>Hamza Farooq</td>
+                    <td>Farooq Ahmed</td>
+                    <td>ICS</td>
+                    <td>2025</td>
+                </tr>
+                <tr>
+                    <td>2025009</td>
+                    <td>Mariam Khan</td>
+                    <td>Khan Waqas</td>
+                    <td>FSc Pre-Medical</td>
+                    <td>2025</td>
+                </tr>
+                <tr>
+                    <td>2025010</td>
+                    <td>Omar Hayat</td>
+                    <td>Hayat Khan</td>
+                    <td>FSc Pre-Engineering</td>
+                    <td>2025</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    
+    <section id="contact" class="hidden">
+        <h2>Contact Us</h2>
+        <p><strong>Email:</strong> shoaibimran4569@gmail.com</p>
+        <p><strong>Phone:</strong> 03158297707</p>
+        <p><strong>Address:</strong> Main Road, Zafarwal, Narowal District, Punjab, Pakistan</p>
+        
+        <h3>Location Map</h3>
+        <div style="width: 100%; height: 300px; background-color: #004080; display: flex; justify-content: center; align-items: center;">
+            [Map of Punjab College Zafarwal Location]
+        </div>
+    </section>
+    
+    <section id="message" class="hidden">
+        <h2>Send Us a Message</h2>
+        <form id="message-form" action="https://formsubmit.co/shoaibimran4569@gmail.com" method="POST">
+            <input type="hidden" name="_subject" value="New Message from PGC Zafarwal Website">
+            <input type="hidden" name="_template" value="table">
+            <div class="form-group">
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone No:</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="message-text">Message:</label>
+                <textarea id="message-text" name="message" rows="5" required></textarea>
+            </div>
+            <input type="hidden" name="_next" value="https://yourdomain.com/thankyou.html">
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+    </section>
+    
+    <div class="document-sidebar" id="document-sidebar">
+        <h2>Your Documents</h2>
+        <div class="document-list" id="document-list">
+            <p>No documents uploaded yet</p>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2025 Punjab College Zafarwal. All Rights Reserved.</p>
+    </footer>
+    
+    <script>
+        // Show home section by default
+        document.addEventListener('DOMContentLoaded', function() {
+            showSection('home');
+            loadAdmissionForm();
+            setupDragAndDrop();
+        });
+        
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            
+            // Show the selected section
+            document.getElementById(sectionId).classList.remove('hidden');
+            
+            // Show document sidebar for admission section
+            if (sectionId === 'admission') {
+                document.getElementById('document-sidebar').style.display = 'block';
+            } else {
+                document.getElementById('document-sidebar').style.display = 'none';
+            }
+        }
+        
+        function loadAdmissionForm() {
+            const today = new Date();
+            const lastDate = new Date('2025-06-01');
+            const container = document.getElementById('admission-form-container');
+            
+            if (today <= lastDate) {
+                container.innerHTML = `
+                    <h3>Admission Form</h3>
+                    <form id="admission-form">
+                        <h4>Basic Information:</h4>
+                        <div class="form-group">
+                            <label for="firstName">Enter Your First Name:</label>
+                            <input type="text" id="firstName" name="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Enter Your Last Name:</label>
+                            <input type="text" id="lastName" name="lastName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cnic">Enter Your CNIC:</label>
+                            <input type="text" id="cnic" name="cnic" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="fatherName">Enter Father Name:</label>
+                            <input type="text" id="fatherName" name="fatherName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="dob">Enter Your Date of Birth:</label>
+                            <input type="date" id="dob" name="dob" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Enter Phone No:</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Enter Your Address:</label>
+                            <textarea id="address" name="address" required></textarea>
+                        </div>
+                        
+                        <h4>Documents Upload Section:</h4>
+                        <div class="form-group">
+                            <label>Upload Your Matric Result Card:</label>
+                            <div class="upload-area" id="matric-upload">
+                                <p>Drag and drop file here or</p>
+                                <input type="file" id="matricResult" name="matricResult" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Upload Your Domicile:</label>
+                            <div class="upload-area" id="domicile-upload">
+                                <p>Drag and drop file here or</p>
+                                <input type="file" id="domicile" name="domicile" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Upload Your CNIC (Front and Back):</label>
+                            <div class="upload-area" id="cnic-upload">
+                                <p>Drag and drop files here or</p>
+                                <input type="file" id="cnicFront" name="cnicFront" required>
+                                <input type="file" id="cnicBack" name="cnicBack" required>
+                            </div>
+                        </div>
+                        
+                        <h4>Admission Field:</h4>
+                        <div class="form-group">
+                            <label for="admissionField">Enter Your Admission Field:</label>
+                            <select id="admissionField" name="admissionField" required>
+                                <option value="">Select Field</option>
+                                <option value="FSc Pre-Medical">FSc Pre-Medical</option>
+                                <option value="FSc Pre-Engineering">FSc Pre-Engineering</option>
+                                <option value="ICS">ICS</option>
+                                <option value="FA Arts">FA Arts</option>
+                                <option value="I.Com">I.Com</option>
+                            </select>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">Submit Admission Form</button>
+                    </form>
+                `;
+            } else {
+                container.innerHTML = `
+                    <div style="text-align: center; padding: 20px;">
+                        <h3 style="color: #ff0000;">Admissions Closed</h3>
+                        <p>Admissions for 1st year students have been closed now.</p>
+                        <p>The last date to apply was June 01, 2025.</p>
+                        <p>Please check back next year for new admissions.</p>
+                    </div>
+                `;
+            }
+        }
+        
+        function setupDragAndDrop() {
+            // Setup for matric upload
+            const matricUpload = document.getElementById('matric-upload');
+            const matricInput = document.getElementById('matricResult');
+            
+            // Setup for domicile upload
+            const domicileUpload = document.getElementById('domicile-upload');
+            const domicileInput = document.getElementById('domicile');
+            
+            // Setup for cnic upload
+            const cnicUpload = document.getElementById('cnic-upload');
+            const cnicFrontInput = document.getElementById('cnicFront');
+            const cnicBackInput = document.getElementById('cnicBack');
+            
+            // Add event listeners to all upload areas
+            [matricUpload, domicileUpload, cnicUpload].forEach(area => {
+                if (area) {
+                    area.addEventListener('dragover', (e) => {
+                        e.preventDefault();
+                        area.classList.add('highlight');
+                    });
+                    
+                    area.addEventListener('dragleave', () => {
+                        area.classList.remove('highlight');
+                    });
+                    
+                    area.addEventListener('drop', (e) => {
+                        e.preventDefault();
+                        area.classList.remove('highlight');
+                        const files = e.dataTransfer.files;
+                        handleFileUpload(files, area.id);
+                    });
+                }
+            });
+            
+            // Add change event listeners to file inputs
+            if (matricInput) {
+                matricInput.addEventListener('change', () => {
+                    handleFileUpload(matricInput.files, 'matric-upload');
+                });
+            }
+            
+            if (domicileInput) {
+                domicileInput.addEventListener('change', () => {
+                    handleFileUpload(domicileInput.files, 'domicile-upload');
+                });
+            }
+            
+            if (cnicFrontInput && cnicBackInput) {
+                cnicFrontInput.addEventListener('change', () => {
+                    handleFileUpload(cnicFrontInput.files, 'cnic-upload');
+                });
+                
+                cnicBackInput.addEventListener('change', () => {
+                    handleFileUpload(cnicBackInput.files, 'cnic-upload');
+                });
+            }
+        }
+        
+        function handleFileUpload(files, uploadAreaId) {
+            const documentList = document.getElementById('document-list');
+            
+            if (files.length > 0) {
+                // Clear "no documents" message if it exists
+                if (documentList.querySelector('p')) {
+                    documentList.innerHTML = '';
+                }
+                
+                for (let i = 0; i < files.length; i++) {
+                    const file = files[i];
+                    const documentItem = document.createElement('div');
+                    documentItem.className = 'document-item';
+                    
+                    const documentName = document.createElement('div');
+                    documentName.className = 'document-name';
+                    documentName.textContent = file.name;
+                    
+                    const documentRemove = document.createElement('span');
+                    documentRemove.className = 'document-remove';
+                    documentRemove.innerHTML = '<i class="fas fa-times"></i>';
+                    documentRemove.onclick = function() {
+                        documentList.removeChild(documentItem);
+                        if (documentList.children.length === 0) {
+                            documentList.innerHTML = '<p>No documents uploaded yet</p>';
+                        }
+                    };
+                    
+                    documentItem.appendChild(documentName);
+                    documentItem.appendChild(documentRemove);
+                    documentList.appendChild(documentItem);
+                }
+            }
+        }
+        
+        // Form submission handling
+        document.addEventListener('submit', function(e) {
+            if (e.target.id === 'admission-form') {
+                e.preventDefault();
+                
+                // Collect form data
+                const formData = {
+                    firstName: document.getElementById('firstName').value,
+                    lastName: document.getElementById('lastName').value,
+                    cnic: document.getElementById('cnic').value,
+                    fatherName: document.getElementById('fatherName').value,
+                    dob: document.getElementById('dob').value,
+                    phone: document.getElementById('phone').value,
+                    address: document.getElementById('address').value,
+                    admissionField: document.getElementById('admissionField').value,
+                    timestamp: new Date().toISOString()
+                };
+                
+                // Send data to the specified file/link
+                sendAdmissionData(formData);
+                
+                // Show success message
+                document.getElementById('admission-form-container').classList.add('hidden');
+                document.getElementById('success-message').classList.remove('hidden');
+                
+                // Reset form
+                e.target.reset();
+            }
+        });
+        
+        function sendAdmissionData(data) {
+            // In a real implementation, this would send the data to the specified file/link
+            // For demonstration, we'll log it and simulate sending
+            
+            console.log('Sending admission data to ADMISSIONPGCZWL.txt:', data);
+            
+            // Create a download link for the admission data (simulated)
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            
+            // Add the admission form to the documents list
+            const documentList = document.getElementById('document-list');
+            if (documentList.querySelector('p')) {
+                documentList.innerHTML = '';
+            }
+            
+            const documentItem = document.createElement('div');
+            documentItem.className = 'document-item';
+            
+            const documentName = document.createElement('div');
+            documentName.className = 'document-name';
+            documentName.textContent = 'Admission_Form.txt';
+            
+            const documentDownload = document.createElement('a');
+            documentDownload.href = url;
+            documentDownload.download = 'Admission_Form.txt';
+            documentDownload.innerHTML = '<i class="fas fa-download"></i>';
+            documentDownload.style.color = '#1e90ff';
+            documentDownload.style.marginLeft = '10px';
+            
+            documentItem.appendChild(documentName);
+            documentItem.appendChild(documentDownload);
+            documentList.appendChild(documentItem);
+            
+            // In a real implementation, you would send this data to your server
+            // or the OneDrive link using an API call
+        }
+    </script>
+</body>
+</html>
